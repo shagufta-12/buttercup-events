@@ -1,0 +1,26 @@
+<br>
+<h2>Your Free Pass</h2>
+<div class="carousel-inner" role="listbox">
+  <strong>Full Name:</strong>
+  <%= @article.fname %>
+</div><br>
+ 
+ <div class="carousel-inner" role="listbox">
+  <strong>Age:</strong>
+  <%= @article.age %>
+</div><br>
+
+ <div class="carousel-inner" role="listbox">
+  <strong>Address:</strong>
+  <%= @article.address %>
+</div><br>
+ <div class="carousel-inner" role="listbox">
+  <strong>Mobile No:</strong>
+  <%= @article.phnmbr %>
+</div><br>
+
+ <div class="carousel-inner" role="listbox">
+  <strong>Members Name:</strong>
+  <%= @article.mname %>
+</div><br>
+<%= link_to 'New Free Pass', new_article_path, class: "btn btn-warning" %>

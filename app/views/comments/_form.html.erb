@@ -1,0 +1,18 @@
+
+<%#= form_with(model: [ @event, @event.comments.build ], local: true) do |form| %>
+<%= form_for [ @event, @event.comments.build ] do |form| %>
+  <p>
+    
+    <%= form.label :User %>&nbsp;
+    <% if user_signed_in? %>
+     <a > <%= current_user.username %> </a>
+    <% end -%>
+  </p>
+  <p>
+    <%= form.label :Comment %><br>
+    <%= form.text_area :body %>
+  </p>
+  <p>
+    <%= form.submit %>
+  </p>
+<% end %>

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>ButtercupEvents</title>
+    <%= favicon_link_tag 'favicon.svg' %>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag "https://www.google.com/jsapi" %>
+    <%= csrf_meta_tags %>
+  </head>
+  <% if [events_path,venues_path,my_events_path].include? request.fullpath%>
+    <body>
+  <%elsif current_page? "/categories/#{params[:id]}"%>
+    <body>
+  <%else%>
+    <div class="top-wrap"></div>
+    <body>
+  <%end%>
+    <div>
+      <nav class="navbar navbar-default navbar-fixed-top" style="background-color: #000000;">
+        <div class="container-fluid">
+          <!-- Brand and toggle get grouped for better mobile display -->
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/events">
+              <%= image_tag('logo.png', width: "200px", class: "img-responsive")  %>
+            </a>
+          </div>
+          <!-- Collect the nav links, forms, and other content for toggling -->
+          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" >
+            <ul class="nav navbar-nav">
+              <li >
+                <%= link_to events_path do%>
+                  Events <span class="badge"><%= Event.all.size %></span>
+                <%end%>
+              </li>
+              <li>
+                <%= link_to venues_path do %>
+                  Venues <span class="badge"><%= Venue.all.size %></span>
+                <%end%>  
+              </li>
+            </ul>
+            <% if notice %> 
+              <ul class="nav navbar-nav " style="margin-top:15px">
+                <li>
+                  <div class="container-fluid">
+                  <!-- FOOTER START================== -->
+                  <b style="color:#03CEA4"><%= notice %></b>    
+                </li>
+              </ul>
+            <%end%>
+            <% if alert %> 
+              <ul class="nav navbar-nav " style="margin-top:15px">
+                <li>
+                  <b style="color:#FB4D3D"><%= alert %></b> 
+                </li>
+              </ul>
+            <%end%>
+            <ul class="nav navbar-nav navbar-right">
+              <li>
+                <!-- Button trigger modal -->
+                <button type="button" class="btn btn-info btn-md" data-toggle="modal" data-target="#infoModal" >
+                  About
+                </button>
+              </li>
+              <% if user_signed_in? %>
+                <li>
+                  <a>
+                    <%= current_user.username %>
+                  </a>
+                </li> 
+                <li>
+                  <button type = "button" class="btn btn-warning" style="margin-left: 5px" >
+                    <%= link_to "Account Setting", edit_user_registration_path %>
+                  </button>
+                </li>
+                <li>
+                  <button type = "button" class="btn btn-danger" style="margin-left: 5px" >
+                    <%= link_to "Logout", destroy_user_session_path, method: :delete %>
+                  </button>
+                </li>
+              <% else %>
+                <button type = "button" class="btn btn-warning" style="margin-right: 5px" >
+                  <%= link_to "Login", new_user_session_path %></button></li>
+                <li>
+                  <li>
+                    <button type = "button" class="btn btn-success" style="margin-left: 5px" >
+                      <%= link_to "Register", new_user_registration_path %>
+                    </button>
+                  </li>
+              <% end %>
+            </ul>
+          </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+      </nav>
+      <%= yield %>
+    </div>
+      <%= render 'layouts/footer' %>
+    <%= render 'layouts/info' %>
+  </body>
+</html>

@@ -1,0 +1,35 @@
+ <br>
+ <h2>Apply For Free Pass</h2>
+ <%#= form_with scope: :article, url: articles_path, local: true do |form| %>
+ <%#= form_for :article do |form| %>
+ <%= form_for :article, url: articles_path do |form| %>
+ <p>
+    <%= form.label :Full_Name %><br>
+    <%= form.text_field :fname %>
+  </p>
+ 
+  <p>
+    <%= form.label :Age %><br>
+    <%= form.number_field :age %>
+  </p>
+
+  <p>
+    <%= form.label :Address %><br>
+    <%= form.text_area :address %>
+  </p>
+
+  <p>
+    <%= form.label :Mobile_No %><br>
+    <%= form.number_field :phnmbr %>
+  </p>
+
+  <p>
+    <%= form.label :Members_Name %><br>
+    <%= form.text_area :mname %>
+  </p>
+
+ 
+  <p>
+    <%= form.submit 'Apply'%>
+  </p>
+<% end %>

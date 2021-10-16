@@ -1,0 +1,32 @@
+<ul class="nav nav-tabs" >
+
+  <% if current_page? "/events"%>
+  <li role="presentation" class="active"> 
+	<% else %>
+  <li role="presentation" >
+  <%end%>
+    <a href="/events">Home</a>
+  </li>
+
+
+	<% if can? :my_events, Event.new %>
+	   <% if current_page? "/events/my_events"%>
+      <li role="presentation" class="active"> 
+      <% else %>
+      <li role="presentation" >
+      <%end%>
+        <%= link_to "My Events", my_events_path %>
+      </li>
+	<%end%>
+
+  <li role="presentation" class="dropdown">
+    <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+      Categories <span class="caret"></span>
+    </a>
+    <ul class="dropdown-menu">
+      <% @categories.each do |category| %>
+      	<li><%= link_to category.name.capitalize, category_path(category) %></li>
+      <% end %>
+    </ul>
+  </li>
+</ul>
