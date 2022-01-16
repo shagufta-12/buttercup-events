@@ -1,6 +1,6 @@
 <ul class="nav nav-tabs" >
 	<li role="presentation" > <a href="/events">Home</a></li>
-	
+  
 	<% if can? :my_events, Event.new %>
 		<li role="presentation">
       <%= link_to "My Events", my_events_path %>
